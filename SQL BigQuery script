@@ -28,7 +28,7 @@ CREATE TABLE cyclistic-bikeshare-220606.trip_data.cyclistic AS
   UNION ALL
   SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2112;
 
-# Mutate the table to add "ride_duration," "ride_month" and change days_of_week from number to string format
+# Mutate the table to add new columns "ride_duration" & "ride_month", and change days_of_week from number to string format
 
 SELECT ride_id, bike_type, started_at, ended_at, start_station_name, end_station_name, user_type,
  DATETIME_DIFF(ended_at, started_at, MINUTE) AS ride_duration,
@@ -44,4 +44,8 @@ SELECT ride_id, bike_type, started_at, ended_at, start_station_name, end_station
  END AS day_of_week
  FROM `cyclistic-bikeshare-220606.trip_data.cyclistic`;
  
+ #Exporting the resulting BigQuery Table
+ *Once the syntax was executed, the resulting BigQuery table to csv file from "SAVE RESULTS" button to save it into my google drive.
+ 
+ ##Ready for further exploration and analysis in R
  ================================================
