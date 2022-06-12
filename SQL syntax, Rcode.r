@@ -23,10 +23,10 @@ library(ggplot2)
 
 library(readr)
 bq_final_data <- read_csv("users/user/Capstone_Project/Case_study-1/divvy-2021_dataset/bq_final_data.csv")
-View(bq_final_data) #get peak of the data
+View(bq_final_data) #view the data
 
-glimpse(bq_final_data)#get peak of the data
-head(bq_final_data)#get peak of the data
+glimpse(bq_final_data)#get peek at the dataframe
+head(bq_final_data)#get quick look at the data
 str(bq_final_data) #learn structures of the dataset
 colnames(bq_final_data)#preview the data
 
@@ -46,4 +46,6 @@ ride_Summary <- clean_data %>%
   group_by(user_type, bike_type, day_of_week, ride_month) %>% 
   summarize(number_of_rides = n(), avg_ride_duration = mean(ride_duration))
 View(ride_Summary)
+
+##Exporting the dataframe for data visualization in Tableau
 write.csv(ride_Summary, file = "C:/Users/User/Documents/ride_Summary.csv")
