@@ -1,0 +1,47 @@
+#Combine tables into a single file 
+Combining separate monthly data tables into one table using CREATE TABLE function and UNION ALL SQL operator in BigQuery
+
+CREATE TABLE cyclistic-bikeshare-220606.trip_data.cyclistic AS
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2101
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2102
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2103
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2104
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2105
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2106
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2107
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2108
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2109
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2110
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2111
+  UNION ALL
+  SELECT * FROM cyclistic-bikeshare-220606.trip_data.bikeride_2112;
+
+
+#Add data to prepare for analysis
+Add new columns for “ride_duration” and “ride_month” and change “day_of_week” from number to string format
+
+ SELECT ride_id, bike_type, started_at, ended_at, ride_length, day_of_week, 
+	start_station_name, end_station_name, user_type,
+  CASE
+    WHEN day_of_week = 1 THEN 'Sunday'
+    WHEN day_of_week = 2 THEN 'Monday'
+    WHEN day_of_week = 3 THEN 'Tuesday'
+    WHEN day_of_week = 4 THEN 'Wednsday'
+    WHEN day_of_week = 5 THEN 'Thursday'
+    WHEN day_of_week = 6 THEN 'Friday'
+    ELSE 'Saturday'
+  END AS day_of_week
+ FROM `cyclistic-bikeshare-220606.trip_data.ride_2021`;
+
+#Export the resulting BigQuery Table
+*Once the syntax was executed, the resulting BigQuery table to csv file from "SAVE RESULTS" button to save it into my google drive. The final table is ready for further exploration and analysis in R 
