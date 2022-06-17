@@ -30,10 +30,9 @@ CREATE TABLE cyclistic-bikeshare-220606.trip_data.cyclistic AS
 #Add data to prepare for analysis
 Add new columns for “ride_duration” and “ride_month” and change “day_of_week” from number to string format
 
- SELECT ride_id, bike_type, started_at, ended_at, ride_duration, ride_month, day_of_week, 
-	start_station_name, end_station_name, user_type,
+ SELECT ride_id, bike_type, started_at, ended_at, start_station_name, end_station_name, user_type, day_of_week, 
  	DATETIME_DIFF (ended_at, started_at, MINUTE) AS ride_duration,
-       EXTRACT (MONTH from started_at) AS ride_month,
+       	EXTRACT (MONTH from started_at) AS ride_month,
   CASE
     WHEN day_of_week = 1 THEN 'Sunday'
     WHEN day_of_week = 2 THEN 'Monday'
